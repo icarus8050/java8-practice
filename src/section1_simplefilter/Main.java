@@ -26,6 +26,14 @@ public class Main {
                     System.out.println(apple.getColor());
                     System.out.println(apple.getWeight());
                 });
+
+        System.out.println();
+        System.out.println("more simple way...");
+        filterApples(apples, apple -> "green".equals(apple.getColor()))
+                .forEach(apple -> {
+                    System.out.println(apple.getColor());
+                    System.out.println(apple.getWeight());
+                });
     }
 
     public static List<Apple> filterApples(List<Apple> inventory, Predicate<Apple> p) {
