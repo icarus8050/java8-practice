@@ -1,5 +1,7 @@
 package section_3.method_reference;
 
+import java.util.function.Supplier;
+
 public class Foo {
 
     private int value;
@@ -14,6 +16,12 @@ public class Foo {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public String getBarName(Bar bar) {
+        Supplier<String> supplier = bar::getName;
+
+        return supplier.get();
     }
 
     @Override
