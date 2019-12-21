@@ -1,14 +1,12 @@
 package section_3.method_reference;
 
-import java.util.function.IntFunction;
+import java.util.function.Consumer;
 
 public class FirstMain {
 
     public static void main(String[] args) {
-        IntFunction<Foo> function = Foo::new;
+        Consumer<Foo> consumer = System.out::println;
 
-        Foo foo = function.apply(5);
-
-        System.out.println(foo.getValue());
+        consumer.accept(new Foo(5));
     }
 }

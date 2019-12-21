@@ -15,4 +15,11 @@ public class Foo {
     public void setValue(int value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "Foo{" +
+                "value=" + value +
+                '}';
+    }
 }
