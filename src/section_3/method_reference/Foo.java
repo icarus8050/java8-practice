@@ -6,6 +6,9 @@ public class Foo {
 
     private int value;
 
+    public Foo() {
+    }
+
     public Foo(int value) {
         this.value = value;
     }
