@@ -28,5 +28,16 @@ public class StreamExam {
                 .collect(toList());
 
         lowCaloriesDishes.forEach(System.out::println);
+
+        //-------------------------------------------------
+
+        List<String> threeHighCaloriesDishNames =
+                dishes.stream()
+                .filter(d -> d.getCalories() > 500)
+                .map(Dish::getName)
+                .limit(3)
+                .collect(toList());
+
+        System.out.println(threeHighCaloriesDishNames);
     }
 }
