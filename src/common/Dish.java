@@ -1,3 +1,5 @@
+package common;
+
 public class Dish {
 
     private final String name;
