@@ -1,5 +1,3 @@
-package section_4.preview_stream;
-
 import java.util.Arrays;
 import java.util.List;
 

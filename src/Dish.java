@@ -1,5 +1,3 @@
-package section_4.preview_stream;
-
 public class Dish {
 
     private final String name;
