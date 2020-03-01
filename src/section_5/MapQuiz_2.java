@@ -24,5 +24,17 @@ public class MapQuiz_2 {
                         ).collect(Collectors.toList());
 
         pairs.forEach(pair -> System.out.printf("%d, %d\n", pair[0], pair[1]));
+
+        System.out.println("------------------------------");
+
+        //quiz_3
+        List<int[]> pairs2 = numbers1.stream()
+                .flatMap(
+                        i -> numbers2.stream()
+                                .filter(j -> (i + j) % 3 == 0)
+                                .map(j -> new int[]{i, j})
+                ).collect(Collectors.toList());
+
+        pairs2.forEach(pair -> System.out.printf("%d, %d\n", pair[0], pair[1]));
     }
 }
