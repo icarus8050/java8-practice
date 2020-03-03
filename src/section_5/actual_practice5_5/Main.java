@@ -54,6 +54,28 @@ public class Main {
                 .forEach(System.out::println);
 
         System.out.println("------------------------------------------------------");
+        System.out.println("4. 모든 거래자의 이름을 알파벳순으로 정렬해서 반환하시오.");
+        String ans4 = transactions.stream()
+                .map(transaction -> transaction.getTrader().getName())
+                .distinct()
+                .sorted()
+                .reduce("", (n1, n2) -> n1 + n2);
+
+        System.out.println(ans4);
+
+        System.out.println();
+        System.out.println("or");
+        System.out.println();
+
+        //Collectors.joining() 은 내부적으로 StringBuilder 를 사용하므로 위의 코드보다 효율성이 좋다.
+        String ans4_2 = transactions.stream()
+                .map(transaction -> transaction.getTrader().getName())
+                .distinct()
+                .sorted()
+                .collect(Collectors.joining());
+        System.out.println(ans4_2);
+
+        System.out.println("------------------------------------------------------");
 
     }
 }
