@@ -76,6 +76,28 @@ public class Main {
         System.out.println(ans4_2);
 
         System.out.println("------------------------------------------------------");
+        System.out.println("5. 밀라노에 거래자가 있는가?");
+        boolean ans5 = transactions.stream()
+                .anyMatch(transaction -> transaction.getTrader().getCity().equals("Milan"));
+        System.out.println(ans5);
 
+        System.out.println("------------------------------------------------------");
+        System.out.println("6. 케임브리지에 거주하는 거래자의 모든 트랜잭션 값을 출력하시오.");
+        transactions.stream()
+                .filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
+                .forEach(transaction -> System.out.println(transaction.getValue()));
+
+        System.out.println("------------------------------------------------------");
+        System.out.println("7. 전체 트랜잭션 중 최대값은 얼마인가?");
+        transactions.stream()
+                .max(Comparator.comparing(Transaction::getValue))
+                .ifPresent(transaction -> System.out.println(transaction.getValue()));
+
+        System.out.println("------------------------------------------------------");
+        System.out.println("8. 전체 트랜잭션 중 최솟값은 얼마인가?");
+        transactions.stream()
+                .map(Transaction::getValue)
+                .reduce(Integer::min)
+                .ifPresent(System.out::println);
     }
 }
