@@ -27,6 +27,7 @@ public class Main {
                 .filter(transaction -> transaction.getYear() == 2011)
                 .sorted(Comparator.comparing(Transaction::getValue))
                 .forEach(transaction -> System.out.println(transaction.toString()));
+
         System.out.println("------------------------------------------------------");
         System.out.println("2. 거래자가 근무하는 모든 도시를 중복 없이 나열하시오.");
         transactions.stream()
@@ -42,6 +43,17 @@ public class Main {
                 .map(transaction -> transaction.getTrader().getCity())
                 .collect(Collectors.toSet())
                 .forEach(System.out::println);
+
         System.out.println("------------------------------------------------------");
+        System.out.println("3. 케임브리지에서 근무하는 모든 거래자를 찾아서 이름순으로 정렬하시오.");
+        transactions.stream()
+                .map(Transaction::getTrader)
+                .filter(trader -> trader.getCity().equals("Cambridge"))
+                .distinct()
+                .sorted(Comparator.comparing(Trader::getName))
+                .forEach(System.out::println);
+
+        System.out.println("------------------------------------------------------");
+
     }
 }
