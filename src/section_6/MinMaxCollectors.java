@@ -4,6 +4,7 @@ import common.Dish;
 import common.ExampleFactory;
 
 import java.util.Comparator;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,5 +25,9 @@ public class MinMaxCollectors {
 
         mostCaloriesDish.ifPresent(dish -> System.out.println(dish.getName()));
         lowestCaloriesDish.ifPresent(dish -> System.out.println(dish.getName()));
+
+        IntSummaryStatistics summaryStatistics = menu.stream()
+                .collect(Collectors.summarizingInt(Dish::getCalories));
+        System.out.println(summaryStatistics);
     }
 }
