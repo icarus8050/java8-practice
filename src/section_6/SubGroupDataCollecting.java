@@ -3,10 +3,7 @@ package section_6;
 import common.Dish;
 import common.ExampleFactory;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class SubGroupDataCollecting {
@@ -38,5 +35,39 @@ public class SubGroupDataCollecting {
                         );
 
         System.out.println(mostCaloricByType2);
+        System.out.println("---------------------------------------");
+        Map<Dish.Type, Set<CaloricLevel>> caloricLevelsByType = menu.stream().collect(
+                Collectors.groupingBy(Dish::getType, Collectors.mapping(dish -> {
+                            if (dish.getCalories() <= 400) {
+                                return CaloricLevel.DIET;
+                            } else if (dish.getCalories() <= 700) {
+                                return CaloricLevel.NORMAL;
+                            } else {
+                                return CaloricLevel.FAT;
+                            }
+                        },
+                        Collectors.toSet())
+                )
+        );
+        System.out.println(caloricLevelsByType);
+        System.out.println("-------------------------------------");
+        Map<Dish.Type, HashSet<CaloricLevel>> caloricLevelsByType2 = menu.stream().collect(
+                Collectors.groupingBy(Dish::getType, Collectors.mapping(dish -> {
+                            if (dish.getCalories() <= 400) {
+                                return CaloricLevel.DIET;
+                            } else if (dish.getCalories() <= 700) {
+                                return CaloricLevel.NORMAL;
+                            } else {
+                                return CaloricLevel.FAT;
+                            }
+                        },
+                        Collectors.toCollection(HashSet::new))
+                )
+        );
+        System.out.println(caloricLevelsByType2);
+    }
+
+    private enum CaloricLevel {
+        DIET, NORMAL, FAT
     }
 }
