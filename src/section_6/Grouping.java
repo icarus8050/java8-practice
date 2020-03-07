@@ -14,5 +14,24 @@ public class Grouping {
         Map<Dish.Type, List<Dish>> group = menu.stream().collect(Collectors.groupingBy(Dish::getType));
 
         System.out.println(group);
+
+        System.out.println("------------------------");
+        Map<CaloricLevel, List<Dish>> dishesByCaloricLevel = menu.stream()
+                .collect(Collectors.groupingBy(dish -> {
+                            if (dish.getCalories() <= 400) {
+                                return CaloricLevel.DIET;
+                            } else if (dish.getCalories() <= 700) {
+                                return CaloricLevel.NORMAL;
+                            } else {
+                                return CaloricLevel.FAT;
+                            }
+                        })
+                );
+
+        System.out.println(dishesByCaloricLevel);
+    }
+
+    private enum CaloricLevel {
+        DIET, NORMAL, FAT
     }
 }
