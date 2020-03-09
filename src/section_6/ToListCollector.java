@@ -1,5 +1,8 @@
 package section_6;
 
+import common.Dish;
+import common.ExampleFactory;
+
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
@@ -38,5 +41,11 @@ public class ToListCollector<T> implements Collector<T, List<T>, List<T>> {
                         Characteristics.IDENTITY_FINISH,
                         Characteristics.CONCURRENT)
         );
+    }
+
+    public static void main(String[] args) {
+        List<Dish> menu = ExampleFactory.getExamData();
+        List<Dish> dishes = menu.stream().collect(new ToListCollector<>());
+        System.out.println(dishes);
     }
 }
