@@ -10,5 +10,14 @@ public class OptionalMap {
 
         System.out.println(name);
         System.out.println("-------------------------------------------");
+        System.out.println("FlatMap Optional Exam");
+        System.out.println(getCarInsuranceName(Optional.empty()));
+    }
+
+    public static String getCarInsuranceName(Optional<Person> person) {
+        return person.flatMap(Person::getCar)
+                .flatMap(Car::getInsurance)
+                .map(Insurance::getName)
+                .orElse("Unknown");
     }
 }
