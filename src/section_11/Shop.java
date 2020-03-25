@@ -1,10 +1,26 @@
 package section_11;
 
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
 public class Shop {
-    public double getPrice(String product) {
-        return calculatePrice(product);
+
+    private String shopName;
+
+    public Shop(String shopName) {
+        this.shopName = shopName;
+    }
+
+    public Future<Double> getPriceAsync(String product) {
+        CompletableFuture<Double> futurePrice = new CompletableFuture<>();
+
+        new Thread(() -> {
+            double price = calculatePrice(product);
+            futurePrice.complete(price);
+        }).start();
+
+        return futurePrice;
     }
 
     private double calculatePrice(String product) {
