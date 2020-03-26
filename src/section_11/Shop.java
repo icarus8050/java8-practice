@@ -12,6 +12,14 @@ public class Shop {
         this.shopName = shopName;
     }
 
+    public String getName() {
+        return this.shopName;
+    }
+
+    public Double getPrice(String product) {
+        return calculatePrice(product);
+    }
+
     public Future<Double> getPriceAsync(String product) {
         CompletableFuture<Double> futurePrice = new CompletableFuture<>();
 
