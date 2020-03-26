@@ -20,7 +20,7 @@ public class NonBlockingCodeExam {
     }
 
     public static List<String> findPrices(List<Shop> shops) {
-        return shops.stream()
+        return shops.parallelStream()
                 .map(shop -> String.format(
                         "%s price is %.2f",
                         shop.getName(),
