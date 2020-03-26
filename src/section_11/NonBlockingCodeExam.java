@@ -2,6 +2,7 @@ package section_11;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 public class NonBlockingCodeExam {
@@ -26,6 +27,20 @@ public class NonBlockingCodeExam {
                         shop.getName(),
                         shop.getPrice(shop.getName())
                 ))
+                .collect(Collectors.toList());
+    }
+
+    public static List<String> findPricesCompletableFuture(List<Shop> shops) {
+        List<CompletableFuture<String>> priceFutures =
+                shops.stream()
+                        .map(shop -> CompletableFuture.supplyAsync(
+                                () -> shop.getName() + " price is " +
+                                        shop.getPrice(shop.getName())
+                        ))
+                        .collect(Collectors.toList());
+
+        return priceFutures.stream()
+                .map(CompletableFuture::join)
                 .collect(Collectors.toList());
     }
 }
