@@ -7,6 +7,7 @@ import java.util.concurrent.Future;
 public class Shop {
 
     private String shopName;
+    Random random = new Random();
 
     public Shop(String shopName) {
         this.shopName = shopName;
@@ -16,8 +17,11 @@ public class Shop {
         return this.shopName;
     }
 
-    public Double getPrice(String product) {
-        return calculatePrice(product);
+    public String getPrice(String product) {
+        double price = calculatePrice(product);
+        Discount.Code code = Discount.Code.values() [
+                random.nextInt(Discount.Code.values().length)];
+        return String.format("%s:%.2f:%s", shopName, price, code);
     }
 
     public Future<Double> getPriceAsync(String product) {
@@ -41,8 +45,6 @@ public class Shop {
 
     private double calculatePrice(String product) {
         delay();
-
-        Random random = new Random();
 
         return random.nextDouble() * product.charAt(0) + product.charAt(1);
     }
