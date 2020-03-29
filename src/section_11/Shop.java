@@ -7,7 +7,7 @@ import java.util.concurrent.Future;
 public class Shop {
 
     private String shopName;
-    Random random = new Random();
+    private static Random random = new Random();
 
     public Shop(String shopName) {
         this.shopName = shopName;
@@ -44,7 +44,7 @@ public class Shop {
     }
 
     private double calculatePrice(String product) {
-        delay();
+        randomDelay();
 
         return random.nextDouble() * product.charAt(0) + product.charAt(1);
     }
@@ -53,6 +53,15 @@ public class Shop {
         try {
             Thread.sleep(1000L);
         } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void randomDelay() {
+        int delay = 500 + random.nextInt(5000);
+        try {
+            Thread.sleep(delay);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
