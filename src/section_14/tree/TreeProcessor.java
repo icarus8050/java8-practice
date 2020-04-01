@@ -36,4 +36,14 @@ public class TreeProcessor {
 
         return t;
     }
+
+    public static Tree fupdate(String k, int newval, Tree t) {
+        return (t == null) ?
+                new Tree(k, newval, null, null) :
+                k.equals(t.getKey()) ?
+                        new Tree(k, newval, t.getLeft(), t.getRight()) :
+                        k.compareTo(t.getKey()) < 0 ?
+                                new Tree(t.getKey(), t.getVal(), fupdate(k, newval, t.getLeft()), t.getRight()) :
+                                new Tree(t.getKey(), t.getVal(), t.getLeft(), fupdate(k, newval, t.getRight()));
+    }
 }
