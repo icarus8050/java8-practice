@@ -17,7 +17,7 @@ public class Main {
 
         LazyList<Integer> numbers2 = from(2);
         int primeTwo = primes(numbers2).head();
-        int primeThree = primes(numbers).tail().head();
+        int primeThree = primes(numbers2).tail().head();
         int primeFive = primes(numbers2).tail().tail().head();
         System.out.println(primeTwo + " " + primeThree + " " + primeFive);
     }
