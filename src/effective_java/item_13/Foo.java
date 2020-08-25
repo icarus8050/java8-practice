@@ -11,6 +11,10 @@ public class Foo implements Cloneable {
         return foo;
     }
 
+    public void setFoo(int i) {
+        this.foo = i;
+    }
+
     @Override
     protected Foo clone() {
         try {
