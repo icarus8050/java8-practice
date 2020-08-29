@@ -1,4 +1,4 @@
-package effective_java.item_18;
+package effective_java.item_18.bad;
 
 import java.util.Collection;
 import java.util.HashSet;
