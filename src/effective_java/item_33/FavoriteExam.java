@@ -1,6 +1,6 @@
 package effective_java.item_33;
 
-public class Main {
+public class FavoriteExam {
     public static void main(String[] args) {
         Favorites f = new Favorites();
 
