@@ -9,7 +9,8 @@ public class RunTests2 {
         int passed = 0;
         Class<?> testClass = Class.forName("effective_java.item_39.Sample2");
         for (Method m : testClass.getDeclaredMethods()) {
-            if (m.isAnnotationPresent(ExceptionTest.class)) {
+            if (m.isAnnotationPresent(ExceptionTest.class)
+                    || m.isAnnotationPresent(ExceptionTestContainer.class)) {
                 tests++;
                 try {
                     m.invoke(null);
@@ -17,11 +18,11 @@ public class RunTests2 {
                 } catch (InvocationTargetException wrappedExc) {
                     Throwable exc = wrappedExc.getCause();
                     int oldPassed = passed;
-                    Class<? extends Throwable>[] excTypes =
-                            m.getAnnotation(ExceptionTest.class).value();
+                    ExceptionTest[] excTests =
+                            m.getAnnotationsByType(ExceptionTest.class);
 
-                    for (Class<? extends Throwable> excType : excTypes) {
-                        if (excType.isInstance(exc)) {
+                    for (ExceptionTest excTest : excTests) {
+                        if (excTest.value().isInstance(exc)) {
                             passed++;
                             break;
                         }

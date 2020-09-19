@@ -23,8 +23,8 @@ public class Sample2 {
     public static void m3() {
     }
 
-    @ExceptionTest({IndexOutOfBoundsException.class,
-            NullPointerException.class})
+    @ExceptionTest(IndexOutOfBoundsException.class)
+    @ExceptionTest(NullPointerException.class)
     public static void doublyBad() {
         List<String> list = new ArrayList<>();
 
