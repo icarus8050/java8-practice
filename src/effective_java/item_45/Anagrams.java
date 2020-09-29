@@ -2,6 +2,9 @@ package effective_java.item_45;
 
 import java.util.*;
 
+/**
+ * 사전 하나를 훑어 원소 수가 많은 아나그램 그룹들을 출력한다
+ */
 public class Anagrams {
     public static void main(String[] args) {
         int minGroupSize = 3;
