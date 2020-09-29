@@ -2,7 +2,8 @@ package effective_java.item_45;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.groupingBy;
 
 /**
  * 스트림을 적절하게 사용하여 깔끔하고 명료하게 작성된 코드
@@ -17,7 +18,7 @@ public class Anagrams_3 {
         );
 
         strList.stream()
-                .collect(Collectors.groupingBy(word -> alphabetize(word)))
+                .collect(groupingBy(word -> alphabetize(word)))
                 .values().stream()
                 .filter(group -> group.size() >= minGroupSize)
                 .forEach(group -> System.out.println(group.size() + ": " + group));
